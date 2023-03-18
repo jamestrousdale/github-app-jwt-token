@@ -31,3 +31,6 @@ runs:
         GITHUB_APP_INSTALLATION_ID: ${{ inputs.app-installation-id }}
         GITHUB_APP_INSTALLATION_REPO: ${{ inputs.app-installation-repo }}
       run: ${{ github.action_path }}/scripts/action.sh
+branding:
+  icon: unlock
+  color: blue
