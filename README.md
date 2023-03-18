@@ -1,6 +1,6 @@
-# github-app-jwt-token
-
 ![CI Checks](https://github.com/jamestrousdale/github-app-jwt-token/actions/workflows/checks.yaml/badge.svg)
+
+# github-app-jwt-token
 
 GitHub action to generate a JWT and an installation access token for a GitHub
 app.
