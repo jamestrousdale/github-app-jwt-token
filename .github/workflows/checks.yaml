@@ -1,0 +1,107 @@
+name: Checks
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  test-with-app-id-only:
+    runs-on: ubuntu-22.04
+    env:
+      GITHUB_APP_ID: ${{ vars.GH_TEST_APP_ID }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate JWT and token
+        id: generate-github-app-tokens
+        uses: ./
+        with:
+          app-id: ${{ vars.GH_TEST_APP_ID }}
+          private-key: ${{ secrets.GH_TEST_APP_PRIVATE_KEY }}
+
+      - name: Set environment from action output
+        run: |
+          {
+            echo "GITHUB_APP_JWT=${{ steps.generate-github-app-tokens.outputs.jwt }}"
+            echo "GITHUB_APP_ACCESS_TOKEN=${{ steps.generate-github-app-tokens.outputs.access-token }}"
+          } >> ${GITHUB_ENV}
+
+      - name: Test JWT
+        run: ./m/scripts/test-jwt.sh
+
+      - name: Test access token
+        run: ./m/scripts/test-access-token.sh
+
+  test-with-installation-id:
+    runs-on: ubuntu-22.04
+    env:
+      GITHUB_APP_ID: ${{ vars.GH_TEST_APP_ID }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate JWT and token
+        id: generate-github-app-tokens
+        uses: ./
+        with:
+          app-id: ${{ vars.GH_TEST_APP_ID }}
+          app-installation-id: ${{ vars.GH_TEST_APP_INSTALLATION_ID }}
+          private-key: ${{ secrets.GH_TEST_APP_PRIVATE_KEY }}
+
+      - name: Set environment from action output
+        run: |
+          {
+            echo "GITHUB_APP_JWT=${{ steps.generate-github-app-tokens.outputs.jwt }}"
+            echo "GITHUB_APP_ACCESS_TOKEN=${{ steps.generate-github-app-tokens.outputs.access-token }}"
+          } >> ${GITHUB_ENV}
+
+      - name: Test JWT
+        run: ./m/scripts/test-jwt.sh
+
+      - name: Test access token
+        run: ./m/scripts/test-access-token.sh
+
+  test-with-installation-repo:
+    runs-on: ubuntu-22.04
+    env:
+      GITHUB_APP_ID: ${{ vars.GH_TEST_APP_ID }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate JWT and token
+        id: generate-github-app-tokens
+        uses: ./
+        with:
+          app-id: ${{ vars.GH_TEST_APP_ID }}
+          app-installation-repo: ${{ github.repository }}
+          private-key: ${{ secrets.GH_TEST_APP_PRIVATE_KEY }}
+
+      - name: Set environment from action output
+        run: |
+          {
+            echo "GITHUB_APP_JWT=${{ steps.generate-github-app-tokens.outputs.jwt }}"
+            echo "GITHUB_APP_ACCESS_TOKEN=${{ steps.generate-github-app-tokens.outputs.access-token }}"
+          } >> ${GITHUB_ENV}
+
+      - name: Test JWT
+        run: ./m/scripts/test-jwt.sh
+
+      - name: Test access token
+        run: ./m/scripts/test-access-token.sh
+
+  publish:
+    runs-on: ubuntu-22.04
+    needs:
+      - test-with-app-id-only
+      - test-with-installation-id
+      - test-with-installation-repo
+    steps:
+      - uses: actions/checkout@v3
+      - name: m environment
+        run: pip install jmlopez-m
+      - name: Publish
+        run: ./m/scripts/publish.sh

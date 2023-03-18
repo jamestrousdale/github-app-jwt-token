@@ -1,0 +1,34 @@
+{
+    "name": "github-app-token",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.profiles.linux": {
+                    "bash": {
+                        "path": "/bin/bash"
+                    }
+                },
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "editor.rulers": [
+                    80,
+                    120
+                ]
+            },
+            "extensions": [
+                "EditorConfig.EditorConfig",
+                "timonwong.shellcheck"
+            ]
+        }
+    },
+    "mounts": [
+        "type=bind,source=${localEnv:HOME}/.ssh,target=/root/.ssh,readonly"
+    ],
+    "runArgs": [
+        "--rm"
+    ],
+    "remoteUser": "root",
+    "shutdownAction": "stopContainer"
+}
