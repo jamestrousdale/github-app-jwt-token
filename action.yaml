@@ -1,0 +1,33 @@
+name: GitHub app JWT and installation access token generation
+description: Generate a JWT and installation access token for a GitHub app
+inputs:
+  app-id:
+    description: GitHub app ID (numeric)
+    required: true
+  private-key:
+    description: Private key (PEM) for the GitHub app
+    required: true
+  app-installation-id:
+    description: Optional application installation ID to use
+    required: false
+  app-installation-repo:
+    description: Optional application installation rpeo to use
+    required: false
+outputs:
+  jwt:
+    description: JWT for the GitHub app
+    value: ${{ steps.generate-tokens.outputs.jwt }}
+  access-token:
+    description: Installation access token for the GitHub app
+    value: ${{ steps.generate-tokens.outputs.access_token }}
+runs:
+  using: 'composite'
+  steps:
+    - id: generate-tokens
+      shell: bash
+      env:
+        GITHUB_APP_ID: ${{ inputs.app-id }}
+        GITHUB_APP_PRIVATE_KEY: ${{ inputs.private-key }}
+        GITHUB_APP_INSTALLATION_ID: ${{ inputs.app-installation-id }}
+        GITHUB_APP_INSTALLATION_REPO: ${{ inputs.app-installation-repo }}
+      run: ${{ github.action_path }}/scripts/action.sh
