@@ -95,6 +95,8 @@ jobs:
 
   publish:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     needs:
       - test-with-app-id-only
       - test-with-installation-id
