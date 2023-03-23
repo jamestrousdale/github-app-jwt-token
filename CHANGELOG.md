@@ -8,6 +8,11 @@ The project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.1.3] <a name="0.1.3" href="#0.1.3">-</a> March 23, 2023
+
+- Use `$GITHUB_ACTION_PATH` instead of `${{ github.action_path }}`
+  - See https://github.com/actions/runner/issues/716
+
 ## [0.1.2] <a name="0.1.2" href="#0.1.2">-</a> March 18, 2023
 
 - Add branding to `action.yaml`
@@ -21,7 +26,8 @@ The project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 
 - Initial release
 
-[unreleased]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.2...HEAD
+[unreleased]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.3...HEAD
+[0.1.3]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/jamestrousdale/github-app-jwt-token/compare/25d92ec344a3ce2f1516cacad5745f92ab3cf0ba...0.1.0
