@@ -8,6 +8,10 @@ The project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.1.4] <a name="0.1.4" href="#0.1.4">-</a> March 23, 2023
+
+- README update
+
 ## [0.1.3] <a name="0.1.3" href="#0.1.3">-</a> March 23, 2023
 
 - Use `$GITHUB_ACTION_PATH` instead of `${{ github.action_path }}`
@@ -26,7 +30,8 @@ The project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 
 - Initial release
 
-[unreleased]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.3...HEAD
+[unreleased]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.4...HEAD
+[0.1.4]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.3...0.1.4
 [0.1.3]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/jamestrousdale/github-app-jwt-token/compare/0.1.0...0.1.1

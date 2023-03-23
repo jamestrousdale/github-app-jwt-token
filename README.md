@@ -23,7 +23,7 @@ provided as a action secret in the calling repo:
 ```yaml
 - name: Generate JWT and token
   id: generate-github-app-tokens
-  uses: jamestrousdale/github-app-jwt-token@master
+  uses: jamestrousdale/github-app-jwt-token@x.y.z # <- Put version in here
   with:
     app-id: '123456'
     private-key: ${{ secrets.MY_GH_APP_PRIVATE_KEY_SECRET }}
@@ -54,7 +54,7 @@ token against a specific installation:
 ```yaml
 - name: Generate JWT and token
   id: generate-github-app-tokens
-  uses: jamestrousdale/github-app-jwt-token@master
+  uses: jamestrousdale/github-app-jwt-token@x.y.z # <- Put version in here
   with:
     app-id: '123456'
     app-installation-id: '9876543'
@@ -67,7 +67,7 @@ access token will be specified against the named repo:
 ```yaml
 - name: Generate JWT and token
   id: generate-github-app-tokens
-  uses: jamestrousdale/github-app-jwt-token@master
+  uses: jamestrousdale/github-app-jwt-token@x.y.z # <- Put version in here
   with:
     app-id: '123456'
     app-installation-repo: 'my-repo-owner/my-repo-name'
