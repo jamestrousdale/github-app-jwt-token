@@ -30,6 +30,7 @@ runs:
         GITHUB_APP_PRIVATE_KEY: ${{ inputs.private-key }}
         GITHUB_APP_INSTALLATION_ID: ${{ inputs.app-installation-id }}
         GITHUB_APP_INSTALLATION_REPO: ${{ inputs.app-installation-repo }}
+      # See https://github.com/actions/runner/issues/716
       run: ${GITHUB_ACTION_PATH}/scripts/action.sh
 branding:
   icon: unlock
